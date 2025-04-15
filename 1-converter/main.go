@@ -84,6 +84,12 @@ func getCalculateResult(num int, cash_1 string, cash_2 string) float64 {
 		resultCash = USDtoRUB * float64(num)
 	case cash_1 == "EUR" && cash_2 == "RUB":
 		resultCash = EURtoRUB * float64(num)
+	case cash_1 == "RUB" && cash_2 == "USD":
+		resultCash = 1 / USDtoRUB * float64(num)
+	case cash_1 == "RUB" && cash_2 == "EUR":
+		resultCash = 1 / EURtoRUB * float64(num)
+	case cash_1 == "EUR" && cash_2 == "USD":
+		resultCash = 1 / USDtoEUR * float64(num)
 	}
 	return resultCash
 }
