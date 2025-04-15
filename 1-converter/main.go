@@ -9,9 +9,9 @@ const USDtoEUR = 0.92
 const USDtoRUB = 85.85
 const EURtoRUB = USDtoEUR * USDtoRUB
 
-var USD string = "USD"
-var EUR string = "EUR"
-var RUB string = "RUB"
+const USD string = "USD"
+const EUR string = "EUR"
+const RUB string = "RUB"
 
 func main() {
 	var cashFirst string
@@ -61,15 +61,7 @@ func getUserInputCash() (string, error) {
 	var cash string
 	fmt.Scan(&cash)
 	if cash != USD && cash != EUR && cash != RUB {
-		return "", errors.New("NO_PANIC_YOU_NEED_TO_FIND_ERROR")
-	}
-	switch {
-	case cash == USD:
-		USD = ""
-	case cash == EUR:
-		EUR = ""
-	case cash == RUB:
-		RUB = ""
+		return "", errors.New("Неверная валюта")
 	}
 	return cash, nil
 }
@@ -78,7 +70,7 @@ func getUserInputCount() (int, error) {
 	var cashCount int
 	fmt.Scan(&cashCount)
 	if cashCount < 0 {
-		return 0, errors.New("NO_PANIC_YOU_NEED_TO_FIND_ERROR")
+		return 0, errors.New("Количество валюты не может быть отрицательным")
 	}
 	return cashCount, nil
 }
@@ -90,7 +82,7 @@ func getCalculateResult(num int, cash_1 string, cash_2 string) float64 {
 		resultCash = USDtoEUR * float64(num)
 	case cash_1 == "USD" && cash_2 == "RUB":
 		resultCash = USDtoRUB * float64(num)
-	case cash_1 == "USD" && cash_2 == "EUR":
+	case cash_1 == "EUR" && cash_2 == "RUB":
 		resultCash = EURtoRUB * float64(num)
 	}
 	return resultCash
